@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import tedimg from './ted.jpg'
 import './App.css';
 
 const tolkien = [
@@ -28,7 +29,7 @@ function BookShelf() {
 const ted = {
   title: "I like this picture",
   sub: "I would name this fine fellow Ted",
-  image: "https://external-preview.redd.it/FcfoxYFryau7Z9OFODlp6acL7GHCJ2SRDr4TamUSzKg.jpg?width=960&crop=smart&auto=webp&v=enabled&s=b152e795005b2d8f0fb290709b11fff97889641c",
+  image: tedimg,
   width: "200",
   height: "300"
 };
