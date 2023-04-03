@@ -8,7 +8,7 @@ import { supabase } from './supabaseClient';
 function Library() {
   const [myBook, setMyBooks] = useState([]);
   async function getBooks() {
-    let { data: books, error } = await supabase
+    let { data: books} = await supabase
       .from('Books')
       .select('*')
     setMyBooks(books);
