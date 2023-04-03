@@ -1,6 +1,37 @@
 //import logo from './logo.svg';
+import { useState } from 'react';
 import tedimg from './ted.jpg'
 import './App.css';
+import { supabase } from './supabaseClient';
+
+
+function Library() {
+  const [myBook, setMyBooks] = useState([]);
+  async function getBooks() {
+    let { data: books, error } = await supabase
+      .from('Books')
+      .select('*')
+    setMyBooks(books);
+  }
+  getBooks();
+  return(
+    <table className='books'>
+    {
+      myBook.map(b => (
+        <tr>
+          <td>{b.Title}</td>
+          <td>{b.Author}</td>
+          <td>{b.ISBN}</td>
+          <td>{b.Description}</td>
+        </tr>
+      ))
+    }
+    </table>
+  )
+}
+
+
+
 
 const tolkien = [
   {id: 1, title: "The Hobbit", isAvalible: true},
@@ -53,10 +84,14 @@ function DisplayTed() {
 }
 
 function MagicButton() {
+  const [count, setCount] = useState(0)
+  function doMagic() {
+    setCount(count + 1);
+  }
   return(
     <div>
       <h3>This is a magic button</h3>
-      <button>Magic</button>
+      <button onClick={doMagic}>Magic {count}</button>
     </div>
   );
 }
@@ -65,6 +100,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Library />
         <DisplayTed />
         <BookShelf />
         <MagicButton />
